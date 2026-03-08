@@ -34,6 +34,7 @@ def train() -> None:
 
             running_loss += loss.item()
     
+        # TODO: Early stopping would be really good here, not much point doing all 20 epochs
         avg_loss = running_loss / len(train_loader)
         print(f"Epoch {epoch}/{TRAIN_EPOCHS} - Loss: {avg_loss:.4f}")
     

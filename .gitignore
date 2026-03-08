@@ -245,4 +245,11 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/python,windows,linux,osx
 
+# torch training/test data
 data
+
+# created ONNX
+model_store
+
+# saved training checkpoints
+checkpoints

@@ -38,4 +38,5 @@ def train() -> None:
         print(f"Epoch {epoch}/{TRAIN_EPOCHS} - Loss: {avg_loss:.4f}")
     
     # TODO: We'll just save at the end for now, but really it would be better if we saved more checkpoints on the epochs
+    CHECKPOINT_DIR.parent.mkdir(parents=True, exist_ok=True)
     save_checkpoint(model, optimizer, epoch, CHECKPOINT_DIR / "final.pt")

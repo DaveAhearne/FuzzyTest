@@ -34,5 +34,6 @@ test = [
 ]
 
 [project.scripts]
-serve = "fuzzy_cnn.serve.api:main"
-train = "fuzzy_cnn.train.train:train"
+fuzzy_serve = "fuzzy_cnn.serve.api:main"
+fuzzy_train = "fuzzy_cnn.train.train:train"
+fuzzy_export = "fuzzy_cnn.export.export_onnx:export_onnx"

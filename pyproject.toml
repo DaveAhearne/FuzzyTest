@@ -35,3 +35,4 @@ test = [
 
 [project.scripts]
 serve = "fuzzy_cnn.serve.api:main"
+train = "fuzzy_cnn.train.train:train"

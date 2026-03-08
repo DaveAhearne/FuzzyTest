@@ -17,3 +17,5 @@ LEARNING_RATE = 0.001
 TRAIN_BATCH_SIZE = 128
 # TODO: The test one could probably be bigger but it's fine for now
 TEST_BATCH_SIZE = 128
+
+NUM_WORKERS = 2

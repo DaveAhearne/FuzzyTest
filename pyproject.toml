@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fuzzy_cnn"
+version = "0.1.0"
+description = "A tech test project for building a CIFAR-10 image classifier"
+requires-python = ">=3.9"
+authors = [
+    { name="David A'Hearne", email="david.ahearnex@gmail.com" }
+]
+
+dependencies = [
+    "pydantic",
+]
+
+[project.optional-dependencies]
+serve = [
+    "fastapi[standard]",
+    "onnx",
+    "onnxruntime",
+    "onnxscript"
+]
+
+test = [
+    "pytest"
+]
+
+[project.scripts]
+serve = "fuzzy_cnn.serve.api:main"

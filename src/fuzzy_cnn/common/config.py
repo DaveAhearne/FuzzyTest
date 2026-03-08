@@ -1,6 +1,7 @@
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
+LABELS_PATH = Path(__file__).resolve().parent / "labels.json"
 DATA_DIR = PROJECT_ROOT / "data"
 CHECKPOINT_DIR = PROJECT_ROOT / "src" / "fuzzy_cnn" / "train" / "checkpoints"
 ONNX_MODEL_PATH = PROJECT_ROOT / "src" / "fuzzy_cnn" / "serve" / "model_store" / "cifar10.onnx"

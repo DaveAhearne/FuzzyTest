@@ -19,6 +19,7 @@ class Settings(BaseSettings):
 
     train_epochs: int = 20
     learning_rate: float = 0.001
+    validation_batch_size: int = 128
     train_batch_size: int = 128
     test_batch_size: int = 128
     num_workers: int = 2
@@ -30,6 +31,7 @@ class Settings(BaseSettings):
     api_key: str = "my_very_secret_key"
     log_to_file: bool = False
     log_level: str = "INFO"
+    max_req_sec: float = 60.0
 
     @field_validator("image_size", "train_epochs", "train_batch_size", "test_batch_size", "num_workers", "port", "workers")
     @classmethod

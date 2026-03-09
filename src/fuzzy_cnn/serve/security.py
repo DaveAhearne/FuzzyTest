@@ -5,7 +5,7 @@ from fuzzy_cnn.common.config import settings
 api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
 
 def require_api_key(api_key: str = Security(api_key_header)):
-    expected = settings.API_KEY
+    expected = settings.api_key
 
     if not expected:
         raise HTTPException(

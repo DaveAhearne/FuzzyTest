@@ -81,7 +81,7 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
 class TimeoutMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request, call_next):
         try:
-            async with asyncio.timeout(settings.MAX_REQ_SEC):
+            async with asyncio.timeout(settings.max_req_sec):
                 return await call_next(request)
         except TimeoutError:
             return JSONResponse(status_code=504, content={"detail": "Request timeout"})

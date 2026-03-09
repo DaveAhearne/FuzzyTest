@@ -63,3 +63,10 @@ docker run --name fuzzy-api-serve \
   -v [YOUR_MODEL_STORE_PATH]:/app/src/fuzzy_cnn/serve/model_store \
   fuzzy-serve
 ```
+
+### Things To Do In Future
+* Add early stopping for the training, we shouldn't continue if it's not getting any better over multiple epochs in terms of validation loss
+* The metrics are lost right now, if we store them somewhere else along with versioning the data it would make more sense, a light MLFlow server for this would be perfect
+* At the minute for the scoring all our probabilities add to 1, we could end up with super low probably "successes" though so we probably want to set atleast a small threshold here (say like, 30%?)
+* Log somewhere about the inputs of the images and the outputs, that way we can look back on them later (Are we getting loads of unknowns? What do those unknowns look like? Are they totally new classes? Bad actors? Or are there new cars we don't recognise?)
+* See what performance is like, is it bursty or sustained? Can people wait or do they need it right now? Some sort of queueing with redis/celery/rabbitmq will fix that otherwise we'll need to horizontally/vertically scale with either more docker containers (we can point at the same trained .onnx result so that's good), or threading/workers inside python. Async/await probably won't help much as it's all CPU bound work not I/O. the good bit about the queueing though is that we can batch up requests if we're running against GPU which will probably give us better per request performance (assuming that we have the throughput to fill it quickly enough to keep people happy)

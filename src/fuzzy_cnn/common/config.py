@@ -27,6 +27,10 @@ class Settings(BaseSettings):
     port: int = 1234
     workers: int = 1
 
+    api_key: str = "my_very_secret_key"
+    log_to_file: bool = False
+    log_level: str = "INFO"
+
     @field_validator("image_size", "train_epochs", "train_batch_size", "test_batch_size", "num_workers", "port", "workers")
     @classmethod
     def must_be_positive(cls, v: int) -> int:

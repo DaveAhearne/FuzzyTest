@@ -23,4 +23,5 @@ def export_onnx():
         # These are effectively the names for the schema in and out of the model      
         input_names=["image"],          
         output_names=["logits"],
+        opset_version=17 # pinning it so it doesn't change
     )

@@ -1,4 +1,3 @@
-
 import io
 from PIL import Image
 from onnxruntime import InferenceSession

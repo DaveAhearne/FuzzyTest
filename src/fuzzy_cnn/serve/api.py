@@ -1,17 +1,18 @@
 from contextlib import asynccontextmanager
 import logging
 from fastapi import FastAPI
-from fuzzy_cnn.serve.deps import load_model
+import onnxruntime as ort
 from fuzzy_cnn.serve.routes.health import router as health_router
 from fuzzy_cnn.serve.routes.inference import router as inference_router
 from fuzzy_cnn.serve.logging import setup_logging
+from fuzzy_cnn.common.config import ONNX_MODEL_PATH, settings
 
 logger = logging.getLogger(__name__)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     setup_logging()
-    load_model()
+    app.state.onnx_session = ort.InferenceSession(ONNX_MODEL_PATH)
     yield
     
 app = FastAPI(
@@ -29,10 +30,9 @@ def main() -> None:
     import os
     import uvicorn
 
-    # TODO: move this to conf, we should really centralize this
-    host = os.getenv("HOST", "0.0.0.0")
-    port = int(os.getenv("PORT", "1234"))
-    workers = int(os.getenv("WORKERS", "1"))
+    host = os.getenv("HOST", settings.host)
+    port = int(os.getenv("PORT", settings.port))
+    workers = int(os.getenv("WORKERS", settings.workers))
 
     uvicorn.run(
         "fuzzy_cnn.serve.api:app",

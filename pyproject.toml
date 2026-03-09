@@ -13,6 +13,7 @@ authors = [
 
 dependencies = [
     "pydantic",
+    "pydantic-settings",
     "pillow"
 ]
 
@@ -35,5 +36,5 @@ test = [
 
 [project.scripts]
 fuzzy_serve = "fuzzy_cnn.serve.api:main"
-fuzzy_train = "fuzzy_cnn.train.train:train"
+fuzzy_train = "fuzzy_cnn.train.train:train_model"
 fuzzy_export = "fuzzy_cnn.export.export_onnx:export_onnx"

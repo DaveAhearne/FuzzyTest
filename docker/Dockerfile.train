@@ -1,0 +1,27 @@
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libglib2.0-0 \
+    libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY pyproject.toml README.md ./
+COPY src ./src
+
+RUN pip install --upgrade pip setuptools wheel && \
+    pip install ".[train,serve]"
+
+# Mount a host directory here to persist them after the container exits.
+VOLUME ["/app/src/fuzzy_cnn/train/checkpoints"]
+
+# Also mount the location where the ONNX output is stored
+VOLUME ["/app/src/fuzzy_cnn/serve/model_store"]
+
+CMD ["sh", "-c", "fuzzy_train && fuzzy_export"]

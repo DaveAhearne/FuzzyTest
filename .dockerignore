@@ -1,0 +1,7 @@
+data/
+src/fuzzy_cnn/train/checkpoints/
+src/fuzzy_cnn/serve/model_store/
+**/__pycache__/
+**/*.pyc
+.venv/
+.git/
